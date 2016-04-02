@@ -45,6 +45,9 @@ public:
         return Point(y, (-1) * x);
     }
 };
+Point operator*(double k, Point a){
+    return Point(k * a.x, k * a.y);
+}
 
 int main(){
 }
