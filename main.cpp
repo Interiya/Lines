@@ -3,6 +3,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include "gtest/gtest.h"
 
 using namespace std;
 
@@ -193,5 +194,7 @@ public:
             Rectangle(Point(ax, ay), Point(bx,by), Segment(Point(ax, ay), Point(bx,by)).length()) {}
     virtual vector<Point> intersection(Segment q) {};
 };
-int main(){
+int main(int argc, char *argv[]){
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
