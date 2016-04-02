@@ -200,6 +200,14 @@ TEST(Point, Projection){
 TEST(Segment, Length){
     ASSERT_DOUBLE_EQ(Segment(1,1,4,1).length(),3);
 };
+TEST(Segment, Intersection_Segment){
+    Segment n(1,1,1,3);
+    Segment m(0,2,2,2);
+    vector<Point> ans;
+    ans.push_back(Point(1,2));
+    vector<Point> res = n.intersection(m);
+    ASSERT_TRUE(ans == res);
+};
 TEST(Segment, Projection){
     ASSERT_TRUE(Segment(3,3,5,5) == Segment(2,4,4,6).projection(Point(7,7)));
 };
