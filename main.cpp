@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -47,6 +48,16 @@ public:
 };
 Point operator*(double k, Point a){
     return Point(k * a.x, k * a.y);
+}
+bool operator==(vector<Point> ans, vector<Point> res){
+    long int s;
+    if (ans.size() == res.size()){
+        for (int i = 0; i < ans.size(); ++i) {
+            s = count(res.begin(),res.end(),ans[i]);
+            if (s == 0) return false;
+        }
+        return true;
+    } else return false;
 }
 
 class Segment;
