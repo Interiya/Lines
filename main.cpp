@@ -194,6 +194,24 @@ public:
             Rectangle(Point(ax, ay), Point(bx,by), Segment(Point(ax, ay), Point(bx,by)).length()) {}
     virtual vector<Point> intersection(Segment q) {};
 };
+TEST(Point, Projection){
+    ASSERT_TRUE(Point(5,5) == Point(4,6).projection(Point(7,7)));
+};
+TEST(Segment, Length){
+    ASSERT_DOUBLE_EQ(Segment(1,1,4,1).length(),3);
+};
+TEST(Segment, Projection){
+    ASSERT_TRUE(Segment(3,3,5,5) == Segment(2,4,4,6).projection(Point(7,7)));
+};
+TEST(Circle, Length){
+    ASSERT_DOUBLE_EQ(Circle(Point(1,2),3).length(), 3 * 2 * M_PI );
+};
+TEST(Rectangle, Length){
+    ASSERT_DOUBLE_EQ(Rectangle(1,1,4,1,2).length(),10);
+};
+TEST(Square, Length){
+    ASSERT_DOUBLE_EQ(Square(1,1,4,1).length(),12);
+};
 int main(int argc, char *argv[]){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
