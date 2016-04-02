@@ -109,5 +109,22 @@ public:
     }
 };
 
+class Circle: public Line {
+    Point c;
+    double r;
+public:
+    Circle (Point _c, double _r): c(_c), r(_r) {}
+    double length (){
+        return r * 2 * M_PI;
+    }
+    Segment projection(Point m){
+        return Segment((c.projection(m) * m.e() - r) * m.e(),
+                       (c.projection(m) * m.e() + r) * m.e());
+    }
+    virtual vector<Point> intersection(Segment q) {
+
+    };
+};
+
 int main(){
 }
