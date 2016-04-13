@@ -1,11 +1,63 @@
 #include <iostream>
 #define _USE_MATH_DEFINES
 #include <cmath>
+#include <vector>
+#include <algorithm>
 #include "gtest/gtest.h"
+using namespace std;
+const double EPS = 1e-10;
 
-#include "Point.h"
-
-//using namespace std;
+class Point;
+Point operator*(double k, Point x);
+class Point {
+public:
+    double x,y;
+    Point() {}
+    Point(double _x, double _y): x(_x), y(_y) {}
+    Point operator+ (Point a){
+        return Point(x + a.x, y + a.y);
+    }
+    Point operator- (Point a){
+        return Point(x - a.x, y - a.y);
+    }
+    double norm() {
+        return sqrt(x * x + y * y);
+    }
+    bool operator== (Point a){
+        return operator-(a).norm() < EPS;
+    }
+    double operator* (Point a){
+        return x * a.x + y * a.y;
+    }
+    Point operator/ (double a){
+        return  1. / a * Point(x, y);
+    }
+    Point e(){
+        return operator/(norm());
+    }
+    Point projection(Point a){
+        return operator*(a.e()) * a.e();
+    }
+    Point perpendicular_left(){
+        return Point(-y, x);
+    }
+    Point perpendicular_right(){
+        return Point(y, -x);
+    }
+};
+Point operator*(double k, Point a){
+    return Point(k * a.x, k * a.y);
+}
+auto operator==(vector<Point> ans, vector<Point> res){
+    long int s;
+    if (ans.size() == res.size()){
+        for (auto i: ans) {
+            s = count(res.begin(),res.end(), i);
+            if (s == 0) return false;
+        }
+        return true;
+    } else return false;
+}
 
 class Segment;
 class Circle;
@@ -153,6 +205,7 @@ public:
     }
     virtual vector<Point> intersection(Segment q) {};
 };
+
 TEST(Point, Projection){
     ASSERT_TRUE(Point(5,5) == Point(4,6).projection(Point(7,7)));
 };
