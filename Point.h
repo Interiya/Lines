@@ -1,0 +1,56 @@
+//
+// Created by Esteno on 13.04.2016.
+//
+
+#ifndef LINES_POINT_H
+#define LINES_POINT_H
+#include <vector>
+#include <math.h>
+using namespace std;
+const double EPS = 1e-10;
+
+class Point;
+Point operator*(double k, Point x);
+class Point {
+public:
+    double x,y;
+    Point() {}
+    Point(double _x, double _y): x(_x), y(_y) {}
+    Point operator+ (Point a){
+        return Point(x + a.x, y + a.y);
+    }
+    Point operator- (Point a){
+        return Point(x - a.x, y - a.y);
+    }
+    double norm() {
+        return sqrt(x * x + y * y);
+    }
+    bool operator== (Point a){
+        return operator-(a).norm() < EPS;
+    }
+    double operator* (Point a){
+        return x * a.x + y * a.y;
+    }
+    Point operator/ (double a){
+        return  1. / a * Point(x, y);
+    }
+    Point e(){
+        return operator/(norm());
+    }
+    Point projection(Point a){
+        return operator*(a.e()) * a.e();
+    }
+    Point perpendicular_left(){
+        return Point(-y, x);
+    }
+    Point perpendicular_right(){
+        return Point(y, -x);
+    }
+};
+Point operator*(double k, Point a){
+    return Point(k * a.x, k * a.y);
+}
+auto operator==(std::vector<Point> ans, std::vector<Point> res);
+
+
+#endif //LINES_POINT_H
