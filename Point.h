@@ -5,7 +5,8 @@
 #ifndef LINES_POINT_H
 #define LINES_POINT_H
 #include <vector>
-#include <math.h>
+#include <algorithm>
+#include <cmath>
 using namespace std;
 const double EPS = 1e-10;
 
@@ -47,10 +48,9 @@ public:
         return Point(y, -x);
     }
 };
-Point operator*(double k, Point a){
+inline Point operator*(double k, Point a){
     return Point(k * a.x, k * a.y);
 }
-auto operator==(std::vector<Point> ans, std::vector<Point> res);
-
+bool operator==(vector<Point> ans, vector<Point> res);
 
 #endif //LINES_POINT_H

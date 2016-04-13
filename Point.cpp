@@ -3,9 +3,9 @@
 //
 
 #include "Point.h"
-#include <algorithm>
 
-auto operator==(vector<Point> ans, vector<Point> res){
+
+bool operator==(vector<Point> ans, vector<Point> res){
     long int s;
     if (ans.size() == res.size()){
         for (auto i: ans) {
