@@ -4,6 +4,11 @@
 
 #include "Point.h"
 
+bool operator== (const Point& a, const Point& b){
+    Point& aa = (Point&)a;
+    Point& bb = (Point&)b;
+    return (aa - bb).norm() < EPS;
+}
 
 bool operator==(vector<Point> ans, vector<Point> res){
     long int s;

@@ -4,9 +4,6 @@
 
 #include "Segment.h"
 
-bool Segment::operator== (Segment s){
-return a == s.a && b == s.b;
-}
 
 vector<Point> Segment::intersection(Segment m){
     double ix, jx, kx, iy, jy, ky;
@@ -36,4 +33,8 @@ vector<Point> Segment::intersection(Segment m){
         (n2x < m.a.x) || (n2x > m.b.x)) return ret;
     ret.push_back(Point(n1x,n1y));
     return ret;
+}
+
+bool operator== (const Segment s, const Segment c){
+    return c.a == s.a && c.b == s.b;
 }

@@ -21,12 +21,14 @@ public:
     double length(){
         return (b - a).norm();
     }
-    bool operator== (Segment s);
     Segment projection(Point m){
         return Segment(a.projection(m), b.projection(m));
     }
 
     vector<Point> intersection(Segment m);
 };
+
+
+bool operator== (const Segment s, const Segment c);
 
 #endif //LINES_SEGMENT_H

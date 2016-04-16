@@ -26,9 +26,6 @@ public:
     double norm() {
         return sqrt(x * x + y * y);
     }
-    bool operator== (Point a){
-        return operator-(a).norm() < EPS;
-    }
     double operator* (Point a){
         return x * a.x + y * a.y;
     }
@@ -49,8 +46,11 @@ public:
     }
 };
 inline Point operator*(double k, Point a){
+
     return Point(k * a.x, k * a.y);
 }
+bool operator== (const Point& a, const Point& b);
+
 bool operator==(vector<Point> ans, vector<Point> res);
 
 #endif //LINES_POINT_H
