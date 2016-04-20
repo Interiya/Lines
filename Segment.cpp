@@ -8,7 +8,6 @@
 vector<Point> Segment::intersection(Segment m){
     double ix, jx, kx, iy, jy, ky;
     double t1, t2;
-    double n1x, n1y, n2x, n2y; //координаты точки
     ix = a.x - b.x;
     jx = m.b.x - m.a.x;
     kx = m.b.x - b.x;
@@ -25,14 +24,10 @@ vector<Point> Segment::intersection(Segment m){
     } else {
         t1 = (ky - t2 * jy) / iy;
     }
-    n1x = a.x * t1 + (1 - t1) * b.x;
-    n1y = a.y * t1 + (1 - t1) * b.y;
-    n2x = m.a.x * t2 + (1 - t2) * m.b.x;
-    n2y = m.a.y * t2 + (1 - t2) * m.b.y;
-    if ((n1x < a.x) || (n1x > b.x) ||
-        (n2x < m.a.x) || (n2x > m.b.x)) return ret;
-    ret.push_back(Point(n1x,n1y));
-    return ret;
+    if (t1 >= 0 && t1 <= 1 && t2 >= 0 && t2 <= 1){
+        ret.push_back(Point(t1 * a + (1 - t1) * b));
+        return ret;
+    } else return ret;
 }
 
 bool operator== (const Segment s, const Segment c){
