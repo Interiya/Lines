@@ -5,27 +5,25 @@
 #include "Rectangle.h"
 
 Rectangle::Rectangle(Segment _s, double _l){
-l = _l;
-v[0] = _s.a;
-v[1] = _s.b;
-v[2] = v[1] + _l * (v[1] - v[0]).perpendicular_left().e();
-v[3] = v[0] + _l * (v[1] - v[0]).perpendicular_left().e();
+    l = _l;
+    v[0] = _s.a;
+    v[1] = _s.b;
+    v[2] = v[1] + _l * (v[1] - v[0]).perpendicular_left().e();
+    v[3] = v[0] + _l * (v[1] - v[0]).perpendicular_left().e();
 }
 Rectangle::Rectangle(Point a, Point b, double _l){
-l = _l;
-v[0] = a;
-v[1] = b;
-v[2] = v[1] + _l * (v[1] - v[0]).perpendicular_left().e();
-v[3] = v[0] + _l * (v[1] - v[0]).perpendicular_left().e();
+    l = _l;
+    v[0] = a;
+    v[1] = b;
+    v[2] = v[1] + _l * (v[1] - v[0]).perpendicular_left().e();
+    v[3] = v[0] + _l * (v[1] - v[0]).perpendicular_left().e();
 }
 Rectangle::Rectangle(double ax, double ay, double bx, double by, double _l){
     l = _l;
     v[0] = Point(ax,ay);
     v[1] = Point(bx,by);
-    v[2] = v[1] + _l * ((v[1] - v[0]).perpendicular_left() /
-                        (v[1] - v[0]).perpendicular_left().norm());
-    v[3] = v[0] + _l * ((v[1] - v[0]).perpendicular_left() /
-                        (v[1] - v[0]).perpendicular_left().norm());
+    v[2] = v[1] + _l * ((v[1] - v[0]).perpendicular_left().e());
+    v[3] = v[0] + _l * ((v[1] - v[0]).perpendicular_left().e());
 }
 
 double Rectangle::length(){
